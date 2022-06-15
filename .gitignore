@@ -131,3 +131,4 @@ dmypy.json
 # Other
 .idea
 poetry.lock
+config.yaml

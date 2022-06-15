@@ -6,6 +6,10 @@ authors = ["AATrubilin <aatrubilin@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
+fastapi = "^0.78.0"
+uvicorn = "^0.17.6"
+dependency-injector = "^4.39.1"
+aiogram = "^2.20"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
@@ -18,3 +22,6 @@ flake8 = "^4.0.1"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+runapp = "sentry_telegram_proxy.api:restapi"
