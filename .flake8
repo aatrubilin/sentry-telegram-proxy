@@ -1,0 +1,3 @@
+[flake8]
+docstring-style = Google
+max-line-length = 88
