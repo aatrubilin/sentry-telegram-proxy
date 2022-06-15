@@ -29,3 +29,11 @@ core:
 
 telegram:
   token: <token>
+  webhooks:
+    - id: <webhook-id>
+      chat_ids:
+        - 123456789
+        - 987654321
+
+sentry:
+  secret: <secret>
