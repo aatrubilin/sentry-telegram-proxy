@@ -1,17 +1,15 @@
 """sentry_telegram_proxy.services.telegram."""
 import asyncio
+import io
 import json
 import logging
 
 from aiogram import Bot
-from aiogram.utils.markdown import code
-from aiogram.utils.parts import MAX_MESSAGE_LENGTH, safe_split_text
+from aiogram.types import InputFile
 
 from ..exceptions import WebhookNotFoundError
 
 logger = logging.getLogger(__name__)
-
-MESSAGE_LENGTH = MAX_MESSAGE_LENGTH - 20
 
 
 class TelegramService(object):
@@ -26,13 +24,10 @@ class TelegramService(object):
 
     async def send_message(self, webhook, payload):
         logger.info(payload)
-        texts = [
-            code(txt)
-            for txt in safe_split_text(
-                json.dumps(payload, indent=4), length=MESSAGE_LENGTH
-            )
-        ]
+        fp = io.StringIO()
+        json.dump(payload, fp)
+        fp.seek(0)
+        input_file = InputFile(fp, filename="sentry-data.json")
         loop = asyncio.get_running_loop()
         for chat_id in self._webhooks[webhook]:
-            for txt in texts:
-                loop.create_task(self._bot.send_message(chat_id, txt))
+            loop.create_task(self._bot.send_document(chat_id, input_file))
