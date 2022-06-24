@@ -1,0 +1,4 @@
+from sentry_telegram_proxy.api import restapi
+
+if __name__ == '__main__':
+    restapi()

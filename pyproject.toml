@@ -5,10 +5,10 @@ description = ""
 authors = ["AATrubilin <aatrubilin@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.10"
 fastapi = "^0.78.0"
 uvicorn = "^0.17.6"
-dependency-injector = "^4.39.1"
+dependency-injector = {extras = ["yaml"], version = "^4.39.1"}
 aiogram = "^2.20"
 
 [tool.poetry.dev-dependencies]
