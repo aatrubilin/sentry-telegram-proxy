@@ -27,7 +27,11 @@ class TelegramService(object):
         fp = io.StringIO()
         json.dump(payload, fp, indent=4)
         fp.seek(0)
-        input_file = InputFile(fp, filename="sentry-data.json")
+        filename = (
+            f"{payload.get('project_slug', 'unknown_project')}_"
+            f"{payload.get('id', '0')}.json"
+        )
+        input_file = InputFile(fp, filename=filename)
         loop = asyncio.get_running_loop()
         for chat_id in self._webhooks[webhook]:
             loop.create_task(self._bot.send_document(chat_id, input_file))
