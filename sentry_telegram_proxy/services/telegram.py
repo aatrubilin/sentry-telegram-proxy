@@ -25,7 +25,7 @@ class TelegramService(object):
     async def send_message(self, webhook, payload):
         logger.info(payload)
         fp = io.StringIO()
-        json.dump(payload, fp)
+        json.dump(payload, fp, indent=4)
         fp.seek(0)
         input_file = InputFile(fp, filename="sentry-data.json")
         loop = asyncio.get_running_loop()
