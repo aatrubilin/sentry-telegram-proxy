@@ -34,7 +34,7 @@ class Event(BaseModel):
     modules: dict
     platform: str
     user: Optional[dict]
-    request: dict
+    request: Optional[dict]
     contexts: dict
     stacktrace: Optional[dict]
     tags: list
