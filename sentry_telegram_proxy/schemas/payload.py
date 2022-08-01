@@ -30,7 +30,7 @@ class Event(BaseModel):
     nodestore_insert: float
     culprit: str
     location: Optional[str]
-    logentry: LogEntry
+    logentry: Optional[LogEntry]
     modules: dict
     platform: str
     user: Optional[dict]
